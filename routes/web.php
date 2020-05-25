@@ -17,28 +17,33 @@
 use App\Http\Middleware\checkuser;
 
 
-Route::post('/logout','HomeController@logout')->name('logout');
-Route::get('/login','HomeController@login')->name('login');
-Route::post('/login','HomeController@login')->name('login-post');
 
-Route::post('/forget-pw','HomeController@forgetPw')->name('forget-pw');
-Route::get('/check_image/{image}','HomeController@checkImage')->name('check_image');
-Route::get('/email-exists-admin/{email}/{id?}','HomeController@emailExistsAdmin')->name('email-exists-admin');
-Route::get('/email-exists-client/{email}/{id?}','HomeController@emailExistsClient')->name('email-exists-client');
+
 
 //Route::group(['prefix'=>'admin-panel'],function(){
-
+Route::get('/', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'admin-panel'],function (){
 
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/get-pic','HomeController@getPic')->name('get-pic');
-    Route::get('/generate-pw','HomeController@generatePw')->name('generate-pw');
-    Route::get('/profile','HomeController@profile')->name('profile');
-    Route::post('/profile','HomeController@profile')->name('profile-post');
-    Route::get('/update-password','HomeController@updatePassword')->name('update-password');
-    Route::post('/update-password','HomeController@updatePassword')->name('update-password-post');
-    Route::get('/settings','HomeController@updateSettings')->name('settings');
-    Route::post('/settings','HomeController@updateSettings')->name('settings-post');
+
+    Route::post('/forget-pw','AdminHomeController@forgetPw')->name('forget-pw');
+    Route::get('/check_image/{image}','HomeController@checkImage')->name('check_image');
+    Route::get('/email-exists-admin/{email}/{id?}','AdminHomeController@emailExistsAdmin')->name('email-exists-admin');
+    Route::get('/email-exists-client/{email}/{id?}','AdminHomeController@emailExistsClient')->name('email-exists-client');
+
+    Route::post('/logout','AdminHomeController@logout')->name('logout');
+    Route::get('/login','AdminHomeController@login')->name('login');
+    Route::post('/login','AdminHomeController@login')->name('login-post');
+
+    Route::group(['middleware'=>\App\Http\Middleware\checkAdmin::class],function (){
+        Route::get('/', 'AdminHomeController@index')->name('home');
+    Route::get('/get-pic','AdminHomeController@getPic')->name('get-pic');
+    Route::get('/generate-pw','AdminHomeController@generatePw')->name('generate-pw');
+    Route::get('/profile','AdminHomeController@profile')->name('profile');
+    Route::post('/profile','AdminHomeController@profile')->name('profile-post');
+    Route::get('/update-password','AdminHomeController@updatePassword')->name('update-password');
+    Route::post('/update-password','AdminHomeController@updatePassword')->name('update-password-post');
+    Route::get('/settings','AdminHomeController@updateSettings')->name('settings');
+    Route::post('/settings','AdminHomeController@updateSettings')->name('settings-post');
 
 
     Route::group(['prefix'=>'admins'],function(){
@@ -75,6 +80,7 @@ Route::group(['prefix'=>'admin-panel'],function (){
     });
 
 
+        });
 });
 
 

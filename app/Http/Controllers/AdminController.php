@@ -19,7 +19,7 @@ class AdminController extends Controller
         $data['admins']=Admin::all();
 
 
-        return view('admin.index',$data);
+        return view('admin_panel.admin.index',$data);
 
     }
 
@@ -35,13 +35,13 @@ class AdminController extends Controller
 
                 if(!empty($request['sudo'])){
                     $sudo = 1;
-                    $clients =0;
+                    $users =0;
                     $constents =0;
                     $reports =0;
                     $settings =0;
                 }else{
                     $sudo=0;
-                    $clients =(!empty($request['clients']))?1:0;
+                    $users =(!empty($request['users']))?1:0;
                     $constents =(!empty($request['contents']))?1:0;
                     $reports =(!empty($request['reports']))?1:0;
                     $settings =(!empty($request['settings']))?1:0;
@@ -55,7 +55,7 @@ class AdminController extends Controller
                 $admin->email = $request['email'];
                 $admin->contents =$constents;
                 $admin->sudo =  $sudo;
-                $admin->clients =  $clients;
+                $admin->users =  $users;
                 $admin->reports = $reports;
                 $admin->settings = $settings;
                 $admin->active=1;
@@ -81,7 +81,7 @@ class AdminController extends Controller
             $data=array();
             $data['who'] = $this->whois(Session::get('user_id'));
             $data['settings'] = $this->findSetting(Session::get('user_id'));
-            return view('admin.create',$data);
+            return view('admin_panel.admin.create',$data);
         }
     }
 
@@ -97,13 +97,13 @@ class AdminController extends Controller
             $resultArray = DB::transaction(function () use ($request) {
                 if(!empty($request['sudo'])){
                     $sudo = 1;
-                    $clients =0;
+                    $users =0;
                     $constents =0;
                     $reports =0;
                     $settings =0;
                 }else{
                     $sudo=0;
-                    $clients =(!empty($request['clients']))?1:0;
+                    $users =(!empty($request['users']))?1:0;
                     $constents =(!empty($request['contents']))?1:0;
                     $reports =(!empty($request['reports']))?1:0;
                     $settings =(!empty($request['settings']))?1:0;
@@ -117,7 +117,7 @@ class AdminController extends Controller
                 $admin->email = $request['email'];
                 $admin->contents =$constents;
                 $admin->sudo =  $sudo;
-                $admin->clients =  $clients;
+                $admin->users =  $users;
                 $admin->reports = $reports;
                 $admin->settings = $settings;
                 $admin->active=(!empty($request['active']))?1:0;;
@@ -144,7 +144,7 @@ class AdminController extends Controller
             $data['admin']=Admin::find($id);
             $data['who'] = $this->whois(Session::get('user_id'));
             $data['settings'] = $this->findSetting(Session::get('user_id'));
-            return view('admin.update',$data);
+            return view('admin_panel.admin.update',$data);
         }
     }
 

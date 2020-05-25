@@ -11317,7 +11317,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "Sonraki",
 	
 	
 				/**
@@ -11340,7 +11340,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "Önceki"
 			},
 	
 			/**
