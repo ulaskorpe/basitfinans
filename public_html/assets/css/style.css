@@ -5,7 +5,17 @@
 }
 
 html {
-	font-size: 6px;
+	font-size: 10px;
+}
+
+.input{
+	font-size: 1.4rem;
+
+}
+
+.select{
+	height: 30px !important;
+	font-size: 1.4rem;
 }
 
 body {
@@ -37,17 +47,17 @@ ul {
 
 section {
 	padding-top: 10rem;
-	padding-bottom: 10rem;
+	padding-bottom:2rem;
 	text-align: center;
 }
 
 .btn-large {
-	font-size: 2rem;		
+	font-size: 2rem;
 	padding: 2.2rem 1.6rem;
 }
 
 .btn {
-	margin-top:4rem; 	
+	margin-top:4rem;
 	font-weight: 400;
 	display: inline-block;
 	border:2px solid transparent;
@@ -64,17 +74,17 @@ section {
 	line-height: 2rem;
 }
 
-.btn-outline {	
+.btn-outline {
 	color:#fff;
-	border-color: #fff;	
+	border-color: #fff;
 	background-color: transparent;
 }
 
 .btn-outline:hover {
 	color: #212529;
-	background-color: #fff;	
+	background-color: #fff;
 }
-
+/*
 .btn-primary {
 	background-color: #18BC9C;
 	border-color: #18BC9C;
@@ -90,7 +100,7 @@ section {
 .img-fluid {
 	max-width: 100%;
 	height: auto;
-}
+}*/
 
 .clearfix::after {
 	content: "";
@@ -100,7 +110,7 @@ section {
 
 .col {
 	float: left;
-	width: 100%;	
+	width: 100%;
 	padding: 1rem;
 }
 
@@ -113,25 +123,25 @@ section {
 }
 
 @media (min-width: 576px) {
-	
+
 	.container {
 		max-width: 540px;
 	}
-	
+
 	html {
 		font-size: 7px;
-	}	
+	}
 }
 
 @media (min-width: 768px) {
 	.container {
 		max-width: 720px;
 	}
-	
+
 	html {
 		font-size: 8px;
 	}
-	
+
 	.col {
 		width: 50%;
 	}
@@ -139,13 +149,13 @@ section {
 
 @media (min-width: 992px) {
 	.container {
-		max-width: 960px;	
+		max-width: 960px;
 	}
-	
+
 	html {
 		font-size: 9px;
 	}
-	
+
 	.col {
 		width: 33.33333%;
 	}
@@ -155,10 +165,11 @@ section {
 	.container {
 		max-width: 1140px;
 	}
-	
+
 	html {
 		font-size: 10px;
 	}
+
 }
 
 
@@ -212,15 +223,23 @@ nav {
 	color: white;
 }
 
-@media (min-width: 768px) {
+
+.pad{
+	padding-left: 0px;
+}
+
+@media (min-width: 991px) {
 	.dropdown-menu .dropdown .dropdown-menu {
 		margin:0;
 		border-width: 1px;
 	}
+
+	.pad{
+		padding-left: 5%;
+	}
 }
 
 
-/*navbar*/
 
 
 /*Header*/
@@ -247,10 +266,10 @@ nav {
 	 .header{
 		 height: 340px;
 		 background-position: left top;
-		 
+
 	 }
 }
-
+/*
 header {
 
 	background-image:
@@ -267,11 +286,12 @@ header {
 	clip-path: polygon(0 0,100% 0,100% 100%, 0 100%);
 	position: relative;
 }
+*/
 /*
 header {
 	background-color: #18BC9C;
 
-	padding-top:calc(112px + 10rem); 
+	padding-top:calc(112px + 10rem);
 	padding-bottom: 112px;
 	text-align: center;
 }
@@ -287,15 +307,15 @@ header h2 {
 	font-family: 'Lato';
 	font-weight: 300;
 }
-
+/*
 hr.star-light {
 	border-color: #fff;
 }
 
 hr.star-dark {
 	border-color: #2C3E50;
-}
-
+}*/
+/*
 .star-light, .star-dark {
 	border: none;
 	border-top: .4rem solid;
@@ -326,7 +346,7 @@ hr.star-dark {
 	top: -3rem;
 }
 
-/* Portfolio */
+ Portfolio
 
 #portfolio {
 }
@@ -343,7 +363,7 @@ hr.star-dark {
 }
 
 .portfolio-item img {
-	display: block;	
+	display: block;
 }
 
 
@@ -372,8 +392,8 @@ hr.star-dark {
 .portfolio-item:hover .img-overlay {
 	opacity: 0.8;
 }
-
-/*about*/
+*/
+/*about
 #about {
 	background-color: #18BC9C;
 	color: #fff;
@@ -422,10 +442,9 @@ hr.star-dark {
 	}
 }
 
+*/
 
-
-/*contact*/
-
+/*contact
 #contact {
 }
 
@@ -436,7 +455,7 @@ hr.star-dark {
 
 #contact-form {
 	width: 70%;
-	margin: 0 auto;	
+	margin: 0 auto;
 	text-align: left;
 }
 
@@ -456,7 +475,8 @@ hr.star-dark {
 
 .form-group input:focus {
 	outline: 0;
-}
+}*/
+
 
 footer {
 	padding-top: 6rem;
@@ -498,7 +518,77 @@ footer li {
 
 
 
+/***********dropdown**************/
 
+.nav-link {
+	font-size: 1.3rem;
+	margin-right: 10px;
+}
+
+@media (max-width:1300px) {
+	.nav-link {
+		font-size: 1.2rem;
+		margin-right: 5px;
+	}
+}
+
+@media (max-width:1100px) {
+	.nav-link {
+		font-size: 1.1rem;
+		margin-right: 0px;
+	}
+}
+@media (max-width:991px) {
+	.nav-link {
+		font-size: 1.5rem;
+		margin-right: 0px;
+	}
+	.dropdown-menu .dropdown-item{
+		font-size: 1.3rem;
+	}
+}
+.dropdown-divider{
+	color:#2C3E50;
+}
+.dropdown-menu {
+	margin-top: 0;
+	background: #f5e79e;
+	font-size: 1.1rem;
+	color:#2C3E50;
+}
+.dropdown-menu .dropdown-toggle::after {
+	vertical-align: middle;
+	border-left: 4px solid;
+	border-bottom: 4px solid transparent;
+	border-top: 4px solid transparent;
+}
+.dropdown-menu .dropdown .dropdown-menu {
+	left: 102%;
+	top: 0%;
+	margin:0 20px;
+	border-width: 0;
+}
+.dropdown-menu .dropdown .dropdown-menu.left {
+	right: 100%;
+	left: auto;
+}
+
+.dropdown-menu > li a:hover,
+.dropdown-menu > li.show {
+	background: #007bff;
+	color: white;
+}
+.dropdown-menu > li.show > a{
+	color: white;
+}
+
+@media (min-width: 768px) {
+	.dropdown-menu .dropdown .dropdown-menu {
+		margin:0;
+		border-width: 1px;
+	}
+}
+/*************************/
 
 
 

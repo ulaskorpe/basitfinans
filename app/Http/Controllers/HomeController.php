@@ -25,6 +25,32 @@ class HomeController extends Controller
         return view('index',$data);
     }
 
+
+
+    public function stopajHesaplama()
+    {
+        $data=array();
+        $data['who']=$this->whois(Session::get('user_id'));
+        return view('muhasebe_vergi.stopaj_hesaplama',$data);
+    }
+    public function amortisman()
+    {
+        $data=array();
+        $data['who']=$this->whois(Session::get('user_id'));
+        return view('muhasebe_vergi.amortisman',$data);
+    }
+
+
+    public function amortismanInner($a_orani,$a_yontemi,$tutar)
+    {
+        $data=array();
+        $data['a_orani']=$a_orani;
+        $data['a_yontemi']=$a_yontemi;
+        $data['tutar']=$tutar;
+        $data['who']=$this->whois(Session::get('user_id'));
+        return view('muhasebe_vergi.amortisman_inner',$data);
+    }
+
     private function renameFile($file, $width = 0, $height = 0, $aspect = 1)
     {
 

@@ -22,6 +22,14 @@ use App\Http\Middleware\checkuser;
 
 //Route::group(['prefix'=>'admin-panel'],function(){
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'muhasebe-vergi'],function (){
+
+    Route::get('/stopaj-hesaplama','HomeController@stopajHesaplama')->name('stopaj-hesaplama');
+    Route::get('/amortisman','HomeController@amortisman')->name('amortisman');
+    Route::get('/amortisman-inner/{a_orani}/{a_yontemi}/{tutar}','HomeController@amortismanInner')->name('amortisman-inner');
+});
+
 Route::group(['prefix'=>'admin-panel'],function (){
 
 
