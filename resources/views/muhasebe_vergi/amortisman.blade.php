@@ -6,39 +6,12 @@
 
 @endsection
 @section('main')
-
-    <section>
-
-        <div class="container text-left pl-5">
-            <div class="row">
-                <div class="col-md-12">
-
-                    <h1> Amortisman nasıl hesaplanır?</h1>
-                    <p>
-                    Vergi Usül Kanunu‘nun (VUK) 315. maddesine göre amortismana tabi olan maddi varlıklar, Maliye
-                    Bakanlığı’nın iktisadi kıymetlerin faydalı ömürlerini dikkate alarak tespit ve ilan ettiği oranlar
-                    üzerinden hesaplanır.
-                    </p><p>
-                    En çok kullanılan amortisman yöntemleri aşağıdakilerdir:
-                    </p><p>
-                        <ul>
-                        <li>Normal (eşit tutarlı) amortisman yöntemi</li>
-                        <li>Azalan bakiyeler (hızlandırılmış amortisman) yöntemi</li>
-                        <li>Fevkalade amortisman yöntemi</li>
-                        </ul>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
     <section>
         <form action="#">
             <div class="container text-left pl-5">
+                <div class="row"><div class="col-md-12 col-sm-12 mb-4"><h1> Amortisman nasıl hesaplanır?</h1></div></div>
                 <div class="row">
+
                     <div class="col-md-3 col-sm-12"><label for="amortisman_yontemi"><b>Amortisman Yönetimi
                                 : </b></label></div>
                     <div class="col-md-3 col-sm-12">
@@ -56,29 +29,28 @@
                     <div class="col-md-3 col-sm-12"><label for="a_orani"><b>Amortisman Oranı (%) : </b></label></div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="ig">%</span>
+                                </div>
+                                <input type="text" name="a_orani" id="a_orani" value="12" onkeypress="return isNumberKey(event)" class="form-control"  onchange="amortismanHesapla();">
+                            </div>
 
-                            <select name="a_orani" id="a_orani" class="form-control w-50 select"
-                                    onchange="amortismanHesapla();">
-                                @for($i=0;$i<100;$i++)
-                                    <option value="<?=$i?>" @if($i==12) selected @endif>%<?=$i?></option>
-                                @endfor
-
-                            </select>
 
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3 col-sm-12"><label for="tutar text-left"><b>Amortisman Tutarı : </b></label>
+                    <div class="col-md-3 col-sm-12"><label for="tutar text-left"><b>Alış Tutarı : </b></label>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
 
                             <div class="input-group mt-2">
 
-                                <input type="number" class="form-control input" value="100000" name="tutar" id="tutar"
-                                       min="0.00" max="10000.00" step="100" onchange="amortismanHesapla();">
+                                <input type="text" class="form-control input" value="100000" name="tutar" id="tutar"
+                                       onkeypress="return isNumberKey(event)" onchange="amortismanHesapla();">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="ig">TL</span>
                                 </div>
@@ -88,28 +60,46 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3 col-sm-12"><label for="tutar text-left"><b>Yıl Sayısı : </b></label></div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="form-group">
 
-                            <div class="input-group mt-2">
-                                <div id="yil_sayisi"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </form>
 
     </section>
-    <section>
+
+
+    <section  >
         <div class="container text-center">
             <div id="result"></div>
+       </div>
+    </section>
+
+    <section  style="margin-top: -100px">
+
+        <div class="container text-left ">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h2> Amortisman nasıl hesaplanır?</h2>
+                    <p>
+                        Vergi Usül Kanunu‘nun (VUK) 315. maddesine göre amortismana tabi olan maddi varlıklar, Maliye
+                        Bakanlığı’nın iktisadi kıymetlerin faydalı ömürlerini dikkate alarak tespit ve ilan ettiği oranlar
+                        üzerinden hesaplanır.
+                    </p><p>
+                        En çok kullanılan amortisman yöntemleri aşağıdakilerdir:
+                    </p><p>
+                    <ul>
+                        <li>Normal (eşit tutarlı) amortisman yöntemi</li>
+                        <li>Azalan bakiyeler (hızlandırılmış amortisman) yöntemi</li>
+                        <li>Fevkalade amortisman yöntemi</li>
+                    </ul>
+
+
+                </div>
+
+            </div>
 
         </div>
-
 
     </section>
 
@@ -134,7 +124,10 @@
             var a_yontemi = $('#a_yontemi').val() * 1;
             var tutar = $('#tutar').val() * 1;
 
+            a_orani = (a_orani>100)?100:a_orani;
+            a_orani = (a_orani<0)?12:a_orani;
 
+            $('#a_orani').val(a_orani);
             $.get("{{url('/muhasebe-vergi/amortisman-inner')}}/" + a_orani + "/" + a_yontemi + "/" + tutar, function (data) {
                 $("#result").html(data);
                 //alert( "Load was performed." );

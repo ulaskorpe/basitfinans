@@ -38,7 +38,7 @@
         yil_sayisi = yil_sayisi * 1;
 
 
-            console.log(yil_sayisi);
+          //  console.log(yil_sayisi);
 
         var yillar = [];
         var aktif_deger_list = [];
@@ -60,18 +60,17 @@
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
+
 
         cell1.innerHTML = "Yıl";
-        cell2.innerHTML = 'Aktif Değer';
-        cell3.innerHTML = 'Amortisman Tutarı';
-        cell4.innerHTML = 'Birikmiş Amortisman';
-        cell5.innerHTML = 'Net Aktif Değer';
+        cell2.innerHTML = 'Amortisman Tutarı';
+        cell3.innerHTML = 'Birikmiş Amortisman';
+        cell4.innerHTML = 'Net Aktif Değer';
         var cont = false;
         if(a_yontemi == 1){
 
             for (var i=1; i<(yil_sayisi+2);i++) {
-                console.log(i);
+               // console.log(i);
                 yillar[i - 1] = i + ".yıl";
                 aktif_deger_list[i - 1] = aktif_deger.toFixed(2);
                 amortismant_tutari_list[i - 1] = (aktif_deger_list[i - 1] * a_orani / 100).toFixed(2);
@@ -94,13 +93,13 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
-                var cell5 = row.insertCell(4);
+
 
                 cell1.innerHTML = i + ".Yıl";
-                cell2.innerHTML = aktif_deger_list[i - 1];
-                cell3.innerHTML = amortismant_tutari_list[i - 1];
-                cell4.innerHTML = birikmis_amortisman_list[i - 1];
-                cell5.innerHTML = net_aktif_deger_list[i - 1];
+
+                cell2.innerHTML = formatMoney(amortismant_tutari_list[i - 1])+' TL';
+                cell3.innerHTML = formatMoney(birikmis_amortisman_list[i - 1])+' TL';
+                cell4.innerHTML = formatMoney(net_aktif_deger_list[i - 1])+ ' TL';
                 if (net_aktif_deger_list[i - 1] == 0) {
                     //   continue;
                     cont = true;
@@ -152,13 +151,13 @@
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
                 var cell4 = row.insertCell(3);
-                var cell5 = row.insertCell(4);
+
 
                 cell1.innerHTML = i + ".Yıl";
-                cell2.innerHTML = aktif_deger_list[i - 1];
-                cell3.innerHTML = amortismant_tutari_list[i - 1];
-                cell4.innerHTML = birikmis_amortisman_list[i - 1];
-                cell5.innerHTML = net_aktif_deger_list[i - 1];
+
+                cell2.innerHTML = formatMoney(amortismant_tutari_list[i - 1])+' TL';
+                cell3.innerHTML = formatMoney(birikmis_amortisman_list[i - 1])+' TL';
+                cell4.innerHTML = formatMoney(net_aktif_deger_list[i - 1])+ ' TL';
                 if (net_aktif_deger_list[i - 1] == 0) {
                     //   continue;
                     cont = true;
@@ -171,7 +170,7 @@
 
         }
 
-        $('#yil_sayisi').html(i );
+    //    $('#yil_sayisi').html(i );
         //console.log(net_aktif_deger_list);
         //  var MONTHS = ['Ocak', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var config = {
@@ -250,7 +249,7 @@
         };
 
         var ctx = document.getElementById('canvas').getContext('2d');
-        window.myLine = new Chart(ctx, config);
+      //  window.myLine = new Chart(ctx, config);
     }
 
 </script>

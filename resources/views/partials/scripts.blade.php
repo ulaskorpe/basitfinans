@@ -23,4 +23,20 @@
     $(function () {
         $('#main_navbar').bootnavbar();
     })
+
+
+    function formatMoney(n) {
+        return parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1.').replace(/\.(\d+)$/,',$1');
+    }
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)){
+            return false;
+        }else{
+            //  $('#brut').val(formatMoney($('#brut').val()));
+            return true;
+        }
+    }
 </script>
