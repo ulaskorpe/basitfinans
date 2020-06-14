@@ -25,21 +25,19 @@ class HomeController extends Controller
         return view('index',$data);
     }
 
-
-
     public function stopajHesaplama()
     {
         $data=array();
         $data['who']=$this->whois(Session::get('user_id'));
         return view('muhasebe_vergi.stopaj_hesaplama',$data);
     }
+
     public function amortisman()
     {
         $data=array();
         $data['who']=$this->whois(Session::get('user_id'));
         return view('muhasebe_vergi.amortisman',$data);
     }
-
 
     public function amortismanInner($a_orani,$a_yontemi,$tutar)
     {

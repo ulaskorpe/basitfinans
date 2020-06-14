@@ -13,7 +13,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "unisharp/laravel-ckeditor": "^4.7",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "claviska/simpleimage":"3.3.3"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
