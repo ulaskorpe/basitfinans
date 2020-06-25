@@ -12,7 +12,9 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="{{url('vendors/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
+    <link rel="stylesheet" href="{{url('assets/css/bootnavbar.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{url('img/icon/apple-icon-57x57.png')}}">

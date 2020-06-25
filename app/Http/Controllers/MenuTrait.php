@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Setting;
+use App\User;
 use Illuminate\Support\Facades\Session;
 
 trait MenuTrait
@@ -31,9 +32,24 @@ trait MenuTrait
         return $setting;
     }
 
-    private function whois($user_id){
-        $user =  Admin::find($user_id);
-        return $user;
+    private function whois(){
+        $data= array();
+        if(empty(Session::get('user_id'))){
+            if( Session::get('session_id') > 0) {
+                $data['guest_id'] =Session::get('session_id');
+            }else{
+                $id= rand(1000000,9999999);
+                Session::put('session_id',$id) ;
+                $data['guest_id'] = $id;
+            }
+            $data['user_id']= 0;
+        }else{
+            $data['user_id'] =  User::find(Session::get('user_id'));
+            $data['guest_id'] = 0;
+        }
+
+
+        return $data;
     }
 
     private function menuItems(){

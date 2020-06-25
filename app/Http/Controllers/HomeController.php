@@ -18,33 +18,51 @@ class HomeController extends Controller
 {
     use MenuTrait;
 
+
+    public function slider(){
+        return view('hesap');
+    }
+    private function ff_number($number){
+
+        //$x = number_format($sayi, 2, ',', '.');
+        return number_format((float)$number, 2, ',', '.');
+    }
+
     public function index()
     {
         $data=array();
-        $data['who']=$this->whois(Session::get('user_id'));
+        $data['who']=$this->whois();
+      //   Session::flush();
+      //   Session::put('session_id',0) ;
+       //
+
+
         return view('index',$data);
     }
 
     public function stopajHesaplama()
     {
         $data=array();
-        $data['who']=$this->whois(Session::get('user_id'));
+        $data['who']=$this->whois();
         return view('muhasebe_vergi.stopaj_hesaplama',$data);
     }
 
     public function amortisman()
     {
         $data=array();
-        $data['who']=$this->whois(Session::get('user_id'));
+        $data['who']=$this->whois();
         return view('muhasebe_vergi.amortisman',$data);
     }
 
-    public function amortismanInner($a_orani,$a_yontemi,$tutar)
+    public function amortismanInner($a_orani,$a_yontemi, $tutar)
     {
+
+
+
         $data=array();
         $data['a_orani']=$a_orani;
         $data['a_yontemi']=$a_yontemi;
-        $data['tutar']=$tutar;
+        $data['tutar']=$tutar ;
         $data['who']=$this->whois(Session::get('user_id'));
         return view('muhasebe_vergi.amortisman_inner',$data);
     }
@@ -137,7 +155,7 @@ class HomeController extends Controller
     }
 
     public function getPic(){
-        $admin = $this->whois(Session::get('admin_id'));
+        $admin = $this->whois();
         if(!empty($admin['avatar'])) {
             //$data='<img src='.url($admin['avatar']).' alt="..." class="img-circle profile_img" width="40">';
             $data='<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -153,6 +171,41 @@ class HomeController extends Controller
         }//?url($admin['avatar']):null;
 
         return  $data;
+    }
+
+   public function getRoute($key){
+ $key = GeneralHelper::fixName($key);
+        $array = [
+            "Eşit Taksitli Kredi"=>'',
+            "Spot Kredi"=>'',
+            "Mevzuat Faizi"=>'',
+            "Kur Endeksleri"=>'',
+            "Enflasyon"=>'',
+            "Döviz Çevirici"=>'',
+            "Paranın Bugünkü Değeri"=>'',
+            "Kira Artışı Hesaplama"=>'',
+            "gelir_tablosu"=>route('gelir-tablosu'),
+            "bilanco"=>route('bilanco'),
+            "nakit_akisi"=>route('nakit-akisi'),
+            "Kira Gelir Vergisi"=>'',
+            "stopaj_hesaplama"=>route('stopaj-hesaplama'),
+            "Tapu Harcı Hesaplama"=>'',
+            "amortisman"=>route('amortisman'),
+            "KDV Kanunu"=>'',
+            "Vergi Usül Kanunu"=>'',
+            "İş Kanunu"=>'',
+            "Banka Talimatı"=>'',
+            "İzin Formu"=>'',
+            "İş Sözleşmesi"=>'',
+
+            "Avans Formu"=>'',
+            "Maaş Hesaplama"=>'',
+            "Kıdem Tazminatı"=>'',
+            "İhbar Tazminatı"=>'',
+            "İşsizlik Maaşı Hesaplama"=>''
+
+        ];
+        return   (!empty($array[$key])) ? $array[$key] : 'yok';
     }
 }
 

@@ -33,12 +33,10 @@
 
         var a_orani = parseInt('{{$a_orani}}');
         var a_yontemi = parseInt('{{$a_yontemi}}');
-        var tutar = parseInt('{{$tutar}}');
-        var yil_sayisi = ((tutar/a_orani)/1000).toFixed(2);
+        var tutar = parseFloat({{$tutar}});//parseInt('{{$tutar}}');
+       // console.log("2:"+tutar);
+        var yil_sayisi = 100/a_orani;//((tutar/a_orani)/1000).toFixed(2);
         yil_sayisi = yil_sayisi * 1;
-
-
-          //  console.log(yil_sayisi);
 
         var yillar = [];
         var aktif_deger_list = [];
@@ -78,7 +76,8 @@
                 net_aktif_deger_list[i - 1] = aktif_deger_list[i - 1] - birikmis_amortisman_list[i - 1];
                 net_aktif_deger_list[i - 1] = ( net_aktif_deger_list[i - 1] >= 0 ) ? net_aktif_deger_list[i - 1].toFixed(2) : 0;
                 birikmis_amortisman_list[i - 1] = (birikmis_amortisman_list[i - 1] * 1 <= tutar ) ? (birikmis_amortisman_list[i - 1] * 1).toFixed(2) : (tutar * 1).toFixed(2);
-                if(i*1==Math.floor(yil_sayisi)+1){
+                //if(i*1==Math.floor(yil_sayisi)+1){
+                 if(false){
                     amortismant_tutari_list[i - 1]= net_aktif_deger_list[i - 2];
                     birikmis_amortisman_list[i - 1]=aktif_deger_list[i - 1];
                     net_aktif_deger_list[i - 1] = 0;
@@ -101,12 +100,12 @@
                 cell3.innerHTML = formatMoney(birikmis_amortisman_list[i - 1])+' TL';
                 cell4.innerHTML = formatMoney(net_aktif_deger_list[i - 1])+ ' TL';
                 if (net_aktif_deger_list[i - 1] == 0) {
-                    //   continue;
+                     //  continue;
                     cont = true;
                 }
 
                 if (net_aktif_deger_list[i - 1] == 0 && cont) {
-                     break;
+                      break;
                 }
 
             }
@@ -131,9 +130,10 @@
                     amortismant_tutari_list[i - 1] = (net_aktif_deger_list[i-2] *a_orani*2 / 100).toFixed(2);
                     birikmis_amortisman_list[i - 1] = (amortismant_tutari_list[i - 1 ]*1 + birikmis_amortisman_list[i - 2]*1).toFixed(2);
                     net_aktif_deger_list[i - 1] = (net_aktif_deger_list[i - 2 ]*1 - amortismant_tutari_list[i - 1]*1).toFixed(2);
-                    console.log(i + ':'+Math.floor(yil_sayisi));
+                  //  console.log(i + ':'+Math.floor(yil_sayisi));
                  //   if(amortismant_tutari_list[i - 1]*1 < (aktif_deger_list[i - 1]*1)/yil_sayisi){
                     if(i*1==Math.floor(yil_sayisi)+2){
+
                         amortismant_tutari_list[i - 1]= net_aktif_deger_list[i - 1];
                         birikmis_amortisman_list[i - 1]=aktif_deger_list[i - 1];
                         net_aktif_deger_list[i - 1] = 0;
@@ -164,12 +164,12 @@
                 }
 
                 if (net_aktif_deger_list[i - 1] == 0 && cont) {
-                   break;
+                    break;
                 }
             }
 
         }
-
+     //   $('#tutar_mask').val(formatMoney($('#tutar_mask').val()));
     //    $('#yil_sayisi').html(i );
         //console.log(net_aktif_deger_list);
         //  var MONTHS = ['Ocak', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -250,6 +250,10 @@
 
         var ctx = document.getElementById('canvas').getContext('2d');
       //  window.myLine = new Chart(ctx, config);
+
+        return true;
     }
+
+
 
 </script>

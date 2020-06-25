@@ -8,15 +8,6 @@ html {
 	font-size: 10px;
 }
 
-.input{
-	font-size: 1.4rem;
-
-}
-
-.select{
-	height: 30px !important;
-	font-size: 1.4rem;
-}
 
 body {
 	font-family: 'Lato', sans-serif;
@@ -56,8 +47,20 @@ section {
 	padding: 2.2rem 1.6rem;
 }
 
+
+.input{
+	font-size: 1.4rem;
+
+}
+
+.select{
+	height: 30px !important;
+	font-size: 1.4rem;
+}
+
+
 .btn {
-	margin-top:4rem;
+
 	font-weight: 400;
 	display: inline-block;
 	border:2px solid transparent;
@@ -84,23 +87,6 @@ section {
 	color: #212529;
 	background-color: #fff;
 }
-/*
-.btn-primary {
-	background-color: #18BC9C;
-	border-color: #18BC9C;
-	color: #fff;
-	padding: 1.2rem 1rem;
-}
-
-.btn-primary:hover {
-	background-color: #128f76;
-	border-color: #128f76;
-}
-
-.img-fluid {
-	max-width: 100%;
-	height: auto;
-}*/
 
 .clearfix::after {
 	content: "";
@@ -186,12 +172,12 @@ section {
 
 #navbar_logo{
 	width: 100%;
-	color: white;
+	color: #2C3E50;
 }
 
 #navbar_logo .container h1{
-
-	color: white;
+	padding-top: 50px;
+	color: #2C3E50;
 }
 #navbar_logo .container h1{
 	 padding-left: 0px;
@@ -666,14 +652,71 @@ footer li {
 /*************************/
 
 
+.bs-example {
+
+	height: 30px;
+}
 
 
 
+.typeahead, .tt-query, .tt-hint {
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	font-size: 12px; /* Set input font size */
+	height: 30px;
+	line-height: 20px;
+	position: relative;
+	padding: 0px 0px;
+	width: auto;
 
 
 
+}
+.typeahead {
+	background-color: #FFFFFF;
+}
+.typeahead:focus {
+	border: 1px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-menu {
 
+	background-color: #f4f4f4;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 1px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: -55px;
+	padding: 8px 0;
+	width: 122px;
+}
+.tt-suggestion {
+	font-size: 12px;  /* Set suggestion dropdown font size */
+	color: #0097CF;
+	padding: 0px 0px;
+	text-align: left;
+}
+.tt-suggestion:hover {
+	cursor: pointer;
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
 
+/***************************************/
+.nakitCell{
+	cursor: pointer ; border:1px solid #ccc;
+}
 
+.nakitCell:hover{
+	background-color: #f5e79e;
+}
+/***************************************/
 
 

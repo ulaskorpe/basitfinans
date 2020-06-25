@@ -4,12 +4,18 @@
 @section('metaKeywords', 'anahtar kelimeler ')
 @section('css')
 
+    <style>
+
+    </style>
+
 @endsection
 @section('main')
     <section>
         <form action="#">
             <div class="container text-left pl-5">
-                <div class="row"><div class="col-md-12 col-sm-12 mb-4"><h1> Amortisman nasıl hesaplanır?</h1></div></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 mb-4"><h1> Amortisman nasıl hesaplanır?</h1></div>
+                </div>
                 <div class="row">
 
                     <div class="col-md-3 col-sm-12"><label for="amortisman_yontemi"><b>Amortisman Yönetimi
@@ -31,9 +37,11 @@
                         <div class="form-group">
                             <div class="input-group ">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="ig">%</span>
+                                    <span class="input-group-text input" id="ig">%</span>
                                 </div>
-                                <input type="text" name="a_orani" id="a_orani" value="12" onkeypress="return isNumberKey(event)" class="form-control"  onchange="amortismanHesapla();">
+                                <input type="text" name="a_orani" id="a_orani" value="12"
+                                       onkeypress="return isNumberKey(event)" class="form-control input"
+                                       onchange="amortismanHesapla();">
                             </div>
 
 
@@ -47,20 +55,43 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
 
-                            <div class="input-group mt-2">
-
-                                <input type="text" class="form-control input" value="100000" name="tutar" id="tutar"
-                                       onkeypress="return isNumberKey(event)" onchange="amortismanHesapla();">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="ig">TL</span>
-                                </div>
+                            @if(false)
+                            <div class="slidecontainer">
+                                <input type="range" min="1000" max="1000000"  step="1000" class="slider" value="100000" id="tutar_mask" onchange="amortismanHesapla()">
 
                             </div>
+                                @endif
+
+
+
+                                <div class="input-group mt-2">
+
+                                    <input type="text" class="form-control input" value="100.000,00" name="tutar_mask" id="tutar_mask"
+                                           onkeypress="return isNumberKey(event)" onchange="tutarGoster();">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="ig">TL</span>
+                                    </div>
+
+                                </div>
+
+
+
                         </div>
                     </div>
+                    <div class="col-md-2 col-sm-12">
+
+                    </div>
+
                 </div>
 
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                    <input type="hidden" id="tutar"  name="tutar" value="100000"  onchange="amortismanHesapla()">
+                    </div>
+                    <div class="col-md-3 col-sm-12">
 
+                    </div>
+                </div>
 
             </div>
         </form>
@@ -68,13 +99,13 @@
     </section>
 
 
-    <section  >
+    <section>
         <div class="container text-center">
             <div id="result"></div>
-       </div>
+        </div>
     </section>
 
-    <section  style="margin-top: -100px">
+    <section style="margin-top: -100px">
 
         <div class="container text-left ">
             <div class="row">
@@ -83,11 +114,14 @@
                     <h2> Amortisman nasıl hesaplanır?</h2>
                     <p>
                         Vergi Usül Kanunu‘nun (VUK) 315. maddesine göre amortismana tabi olan maddi varlıklar, Maliye
-                        Bakanlığı’nın iktisadi kıymetlerin faydalı ömürlerini dikkate alarak tespit ve ilan ettiği oranlar
+                        Bakanlığı’nın iktisadi kıymetlerin faydalı ömürlerini dikkate alarak tespit ve ilan ettiği
+                        oranlar
                         üzerinden hesaplanır.
-                    </p><p>
+                    </p>
+                    <p>
                         En çok kullanılan amortisman yöntemleri aşağıdakilerdir:
-                    </p><p>
+                    </p>
+                    <p>
                     <ul>
                         <li>Normal (eşit tutarlı) amortisman yöntemi</li>
                         <li>Azalan bakiyeler (hızlandırılmış amortisman) yöntemi</li>
@@ -106,26 +140,60 @@
 @endsection
 
 @section('scripts')
-    <script src="{{url('assets/js/Chart.min.js')}}"></script>
+
     <script src="{{url('assets/js/utils.js')}}"></script>
 
-    <!-- Bootstrap -->
+
+    <!-- Bootstrap  <script src="{{url('assets/js/Chart.min.js')}}"></script>-->
     <script>
         $(document).ready(function () {
-            // console.log( "ready!" );
 
+       //     tutarGoster();
             amortismanHesapla();
         });
 
 
+
+        function tutarGoster(){
+            var t = formatMoney($('#tutar_mask').val());
+
+            $('#tutar_mask').val(t);
+
+            t_dizi = t.split(',');
+            var t_new = t_dizi[0].replace('.','');
+            if(t_dizi[1]!=null){
+              //  t_new+='.'+t_dizi[1];
+            }
+            //var tutar = parseFloat($('#tutar_mask').val());
+            $('#tutar').val(t_new);
+            amortismanHesapla();
+        }
+
+
         function amortismanHesapla() {
+            var tutar = $('#tutar').val();
+
+
+            //   $('#sonuc').html(formatMoney(tutar)+' TL');
+           //   var tutar = ($('#tutar_mask').val()).replace(',', '.');
+            // t_dizi_1  =  tutar.split('.');
+          //  tutar = 10000;
+//          t_dizi  =  tutar.split('.');
+
+            //tutar = (t_dizi[1]== null) ? t_dizi[0] : t_dizi[0]+'.'+t_dizi[1];
+            // $('#tutar').val(tutar);
+            //   tutar = tutar.replace('.','x');
+
+
+            //  var t1 = $('#tutar').val().split(',');
+//            var tutar = (t1[0]).replace('.', '');
 
             var a_orani = $('#a_orani').val() * 1;
             var a_yontemi = $('#a_yontemi').val() * 1;
-            var tutar = $('#tutar').val() * 1;
 
-            a_orani = (a_orani>100)?100:a_orani;
-            a_orani = (a_orani<0)?12:a_orani;
+
+            a_orani = (a_orani > 100) ? 100 : a_orani;
+            a_orani = (a_orani < 0) ? 12 : a_orani;
 
             $('#a_orani').val(a_orani);
             $.get("{{url('/muhasebe-vergi/amortisman-inner')}}/" + a_orani + "/" + a_yontemi + "/" + tutar, function (data) {

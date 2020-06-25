@@ -9,7 +9,8 @@
 
     <section>
 
-        <div style="  width: 100%;height: auto">
+
+        <div style="width: 100%;height: auto">
             <div id="slider3" class="carousel slide carousel-fade w-75" style="margin: 0px auto;">
                 <ol class="carousel-indicators">
                     <li data-target="#slider3" data-slide-to="0" class="active"></li>
@@ -53,7 +54,7 @@
         </div>
         <br>
         <br>
-.row>p>ul>li*5
+
 {{----}}
     </section>
 
